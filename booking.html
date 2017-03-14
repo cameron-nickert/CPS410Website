@@ -1,0 +1,238 @@
+<html>
+<head>
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+
+
+<div class="header" style="height:80%">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="login.html" style="color:dark-gray">Hotel Bookings</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="rooms.html" >View Rooms</a></li>
+      <li class="active"><a href="#" >Book Room</a></li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<br>
+
+<div>
+
+
+<div class="month"> 
+  <ul>
+    <li class="prev"> &#10094; </li>
+    <li class="next"> &#10095; </li>
+    <li>
+      August<br>
+      <span style="font-size:18px">2016</span>
+    </li>
+  </ul>
+</div>
+
+<ul class="weekdays">
+  <li>Mo</li>
+  <li>Tu</li>
+  <li>We</li>
+  <li>Th</li>
+  <li>Fr</li>
+  <li>Sa</li>
+  <li>Su</li>
+</ul>
+
+<ul class="days"> 
+<a href="index.html"><li>1</li></a>
+<a href="index.html"><li>2</li></a>
+<a href="index.html"><li>3</li></a>
+<a href="index.html"><li>4</li></a>
+<a href="index.html"><li>5</li></a>
+<a href="index.html"><li>6</li></a>
+<a href="index.html"><li>7</li></a>
+<a href="index.html"><li>8</li></a>
+<a href="index.html"><li>9</li></a>
+<a href="index.html"><li>10</li></a>
+<a href="index.html"><li>11</li></a>
+<a href="index.html"><li>12</li></a>
+<li><span class="active">13</span></li>
+<a href="index.html"><li>14</li></a>
+<a href="index.html"><li>15</li></a>
+<a href="index.html"><li>16</li></a>
+<a href="index.html"><li>17</li></a>
+<a href="index.html"><li>18</li></a>
+<a href="index.html"><li>19</li></a>
+<a href="index.html"><li>20</li></a>
+<a href="index.html"><li>21</li></a>
+<a href="index.html"><li>22</li></a>
+<a href="index.html"><li>23</li></a>
+<a href="index.html"><li>24</li></a>
+<a href="index.html"><li>25</li></a>
+<a href="index.html"><li>26</li></a>
+<a href="index.html"><li>27</li></a>
+</ul>
+
+<div class="col-md-6 text-center"> 
+    <div class="panel panel-default">
+    <div class="panel-body">A Basic Panel</div>
+    </div>
+</div>
+</div>
+</body>
+
+</html>
+<style type="text/css">
+body {
+   
+}
+.panel {
+    border: 0;
+}
+.table > thead > tr > th, .table > thead > tr > td {
+    border: 0;
+}
+
+
+.btn-main { 
+  color: #ffffff; 
+  background-color: rgba(0, 0, 0, 0.2);; 
+  border-color: #FFFFFF; 
+} 
+ 
+.btn-main:hover, 
+.btn-main:focus, 
+.btn-main:active, 
+.btn-main.active, 
+.open .dropdown-toggle.btn-main { 
+  color: #ffffff; 
+  background-color: rgba(0, 0, 0, 0.5);; 
+  border-color: #FFFFFF; 
+} 
+ 
+.btn-main:active, 
+.btn-main.active, 
+.open .dropdown-toggle.btn-main { 
+  background-image: none; 
+} 
+ 
+.btn-main.disabled, 
+.btn-main[disabled], 
+fieldset[disabled] .btn-main, 
+.btn-main.disabled:hover, 
+.btn-main[disabled]:hover, 
+fieldset[disabled] .btn-main:hover, 
+.btn-main.disabled:focus, 
+.btn-main[disabled]:focus, 
+fieldset[disabled] .btn-main:focus, 
+.btn-main.disabled:active, 
+.btn-main[disabled]:active, 
+fieldset[disabled] .btn-main:active, 
+.btn-main.disabled.active, 
+.btn-main[disabled].active, 
+fieldset[disabled] .btn-main.active { 
+  background-color: #0D0D0D; 
+  border-color: #FFFFFF; 
+} 
+ 
+.btn-main .badge { 
+  color: #0D0D0D; 
+  background-color: #ffffff; 
+}
+
+ul {list-style-type: none;}
+body {font-family: Verdana, sans-serif;}
+
+/* Month header */
+.month {
+    padding: 20px 25px;
+    width: 100%;
+    background: #1abc9c;
+}
+
+/* Month list */
+.month ul {
+    margin: 0;
+    padding: 0;
+}
+
+.month ul li {
+    color: white;
+    font-size: 20px;
+    
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+/* Previous button inside month header */
+.month .prev {
+    float: left;
+    padding-top: 10px;
+}
+
+/* Next button */
+.month .next {
+    float: right;
+    padding-top: 10px;
+}
+
+/* Weekdays (Mon-Sun) */
+.weekdays {
+    margin: 0;
+    padding: 10px 0;
+    background-color:#ddd;
+}
+
+.weekdays li {
+    display: inline-block;
+    width: 13.6%;
+    color: #666;
+    text-align: center;
+}
+
+/* Days (1-31) */
+.days {
+    padding: 10px 0;
+    background: #eee;
+    margin: 0;
+}
+
+.days li {
+      padding: 15px;
+
+    list-style-type: none;
+    display: inline-block;
+    width: 13.6%;
+    text-align: center;
+    margin-bottom: 5px;
+    font-size:12px;
+    color:#777;
+}
+
+/* Highlight the "hovered" day */
+.days li:hover {
+    padding: 15px;
+    background: #1abc9c;
+    color: white !important
+}
+
+/* Highlight the "current" day */
+.days li .active {
+    padding: 15px;
+    background: #1abc9c;
+    color: white !important
+}
+</style>

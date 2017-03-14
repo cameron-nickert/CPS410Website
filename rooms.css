@@ -1,0 +1,94 @@
+.room1{
+    background-image: url("room1.jpg");
+    background-size: 80% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 10px;
+}
+.room2{
+    background-image: url("room2.jpg");
+    background-size: 80% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 10px;
+}
+.room3{
+    background-image: url("room3.jpg");
+    background-size: 80% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 10px;
+}
+
+h1.title { 
+	font-size: 50px;
+	font-family: 'Passion One', cursive; 
+	font-weight: 400; 
+}
+h3.title { 
+	font-size: 25px;
+	font-family: 'Passion One', cursive; 
+	font-weight: 400; 
+}
+.panel {
+    border: 0;
+}
+
+.table > thead > tr > th, .table > thead > tr > td {
+    border: 0;
+}
+.navbar a {
+    color: white;
+}
+div {
+    background: url(img_flwr.gif);
+}
+
+.navbar li { color: white } 
+.navbar li a > .active { background-color: white } 
+
+.btn-main { 
+  color: #ffffff; 
+  background-color: rgba(0, 0, 0, 0.2);; 
+  border-color: #FFFFFF; 
+} 
+ 
+.btn-main:hover, 
+.btn-main:focus, 
+.btn-main:active, 
+.btn-main.active, 
+.open .dropdown-toggle.btn-main { 
+  color: #ffffff; 
+  background-color: rgba(0, 0, 0, 0.5);; 
+  border-color: #FFFFFF; 
+} 
+ 
+.btn-main:active, 
+.btn-main.active, 
+.open .dropdown-toggle.btn-main { 
+  background-image: none; 
+} 
+ 
+.btn-main.disabled, 
+.btn-main[disabled], 
+fieldset[disabled] .btn-main, 
+.btn-main.disabled:hover, 
+.btn-main[disabled]:hover, 
+fieldset[disabled] .btn-main:hover, 
+.btn-main.disabled:focus, 
+.btn-main[disabled]:focus, 
+fieldset[disabled] .btn-main:focus, 
+.btn-main.disabled:active, 
+.btn-main[disabled]:active, 
+fieldset[disabled] .btn-main:active, 
+.btn-main.disabled.active, 
+.btn-main[disabled].active, 
+fieldset[disabled] .btn-main.active { 
+  background-color: #0D0D0D; 
+  border-color: #FFFFFF; 
+} 
+ 
+.btn-main .badge { 
+  color: #0D0D0D; 
+  background-color: #ffffff; 
+}
