@@ -1,158 +1,156 @@
-<html>
-<head>
-  <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!DOCTYPE html>
+<html lang="en">
+    <head> 
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<!-- Website CSS style -->
 
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
+		<!-- Website Font style -->
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+		
+		<!-- Google Fonts -->
+		<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
 
-<body>
+        <link rel="stylesheet" type="text/css" href="login.css">
 
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-<div class="header" style="height:80%">
-<nav class="navbar navbar-default">
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
+        <script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyBA_ruii8zof63fNxDEMJRwAPQh8xEqC7o",
+            authDomain: "cpswebsite-42610.firebaseapp.com",
+            databaseURL: "https://cpswebsite-42610.firebaseio.com",
+            storageBucket: "cpswebsite-42610.appspot.com",
+            messagingSenderId: "249799148895"
+          };
+          firebase.initializeApp(config);
+        </script>
+        <script src="login.js"></script>
+
+		<title>Admin</title>
+        
+	</head>
+    <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="login.html" style="color:white">Hotel Bookings</a>
+      <a class="navbar-brand" href="#" style="color:dark-gray">Hotel Bookings</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
+      <li ><a href="index.html">Home</a></li>
       <li><a href="rooms.html" >View Rooms</a></li>
       <li><a href="booking.html" >Book Room</a></li>
-      <li><a href="#">Contact Us</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
     </ul>
   </div>
 </nav>
+	<body>
+        
+		<div class="container">
+			<div class="row main">
+				<div class="panel-heading">
+	               <div class="panel-title text-center">
+	               		<h1 class="title">Contact Us</h1>
+	               		<hr />
+	               	</div>
+	            </div> 
+                
+				<div class="main-login main-center">
+					<form class="form-horizontal" method="post" action="#">
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Your Name</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="email" id="email"  placeholder="Enter your name"/>
+								</div>
+							</div>
+						</div>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<h1 style="text-align:center; color:white">Why Stay Anywhere Else?</h1>
-<p style="text-align:center; color:white">Seriously, it's awesome here.</p>
-<div class="col-md-12 text-center"> 
-    <button id="singlebutton" name="singlebutton" class="btn btn-main">Book Now</button> 
-</div>
-</div>
+						<div class="form-group">
+							<label for="email" class="cols-sm-2 control-label">Your Email</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" name="password" id="password"  placeholder="Enter your email"/>
+								</div>
+							</div>
+						</div>
+                        <div class="form-group">
+							<label for="email" class="cols-sm-2 control-label">Your Question</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-question fa" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" name="password" id="password"  placeholder="Enter your question"/>
+								</div>
+							</div>
+						</div>
+						<div class="form-group ">
+							<button type="button" class="btn btn-primary btn-lg btn-block login-button" data-toggle="modal" data-target="#myModal" onclick="">Send</button>
+						</div>
+                        <div class="login-register">
+				            <a href="#"  data-toggle="modal" data-target="#info"  style="color:#2C3E50; font-size:13px">Our Contact Info?</a>
+				         </div>
+<!--
+						<div class="login-register">
+				            <a href="index.php">Login</a>
+				         </div>
+-->
+					</form>
+				</div>
+			</div>
+		</div>
 
-<br>
+	</body>
 
-<div>
+    <!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
-
-<div class="col-md-6 text-center"> 
-    <div class="panel panel-default">
-
-    <div class="panel-body">Dreams Resorts & Spas offer a high level of luxury for couples and couples with children, in ideal beachfront settings. Spacious rooms and suites, graciously appointed and luxuriously equipped provide a picture-perfect vacation experience with welcoming service and romantic inclusions. Beautiful and exciting destinations provide a lovely setting for a wedding, honeymoon, romantic getaway or family vacation. Best of all, most every amenity is included as part of Unlimited-Luxury®.</div>
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Message Sent</h4>
+      </div>
+      <div class="modal-body">
+        <p>You should look for a response from our team within 48 hours.</p>
+      </div>
+    
     </div>
-</div>
 
-<div class="col-md-6 text-center"> 
-    <div class="panel panel-default">
-    <div class="panel-body">A Basic Panel</div>
+  </div>
+</div>
+        <!-- Modal -->
+<div id="info" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Our Contact Info</h4>
+      </div>
+      <div class="modal-body">
+         <label>Address:</label>
+                        <p>123 Fake Street</p>
+                        <label>Phone #:</label>
+                        <p>123-456-7890</p>
+                        <label>Email:</label>
+                        <p>help@awesomehotels.com</p>
+      </div>
+    
     </div>
-</div>
-</div>
-</body>
 
+  </div>
+</div>
 </html>
-<style type="text/css">
-body {
-   
-}
-.header{
-   background-image: url("bg.jpg");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: top;
-}
-.navbar {
-   background-color: transparent;
-   background: transparent;
-   color: white;
-   border-color: transparent;
-}
-.panel {
-    border: 0;
-}
-.navbar-default .navbar-nav > li > a{
-  color: #222
-}
-.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:focus {
-      color: white;
-
-    /*background-color: rgba(0, 0, 0, 0.2);;*/
-}
-.navbar-default .navbar-nav > .active > a,
-.navbar-default .navbar-nav > .active > a:hover,
-.navbar-default .navbar-nav > .active > a:focus {
-    color: white;
-    background-color: rgba(0, 0, 0, 0);;
-
-}
-.table > thead > tr > th, .table > thead > tr > td {
-    border: 0;
-}
-.navbar a {
-    color: white;
-}
-div {
-    background: url(img_flwr.gif);
-}
-
-.navbar li { color: white } 
-.navbar li a > .active { background-color: white } 
-
-.btn-main { 
-  color: #ffffff; 
-  background-color: rgba(0, 0, 0, 0.2);; 
-  border-color: #FFFFFF; 
-} 
- 
-.btn-main:hover, 
-.btn-main:focus, 
-.btn-main:active, 
-.btn-main.active, 
-.open .dropdown-toggle.btn-main { 
-  color: #ffffff; 
-  background-color: rgba(0, 0, 0, 0.5);; 
-  border-color: #FFFFFF; 
-} 
- 
-.btn-main:active, 
-.btn-main.active, 
-.open .dropdown-toggle.btn-main { 
-  background-image: none; 
-} 
- 
-.btn-main.disabled, 
-.btn-main[disabled], 
-fieldset[disabled] .btn-main, 
-.btn-main.disabled:hover, 
-.btn-main[disabled]:hover, 
-fieldset[disabled] .btn-main:hover, 
-.btn-main.disabled:focus, 
-.btn-main[disabled]:focus, 
-fieldset[disabled] .btn-main:focus, 
-.btn-main.disabled:active, 
-.btn-main[disabled]:active, 
-fieldset[disabled] .btn-main:active, 
-.btn-main.disabled.active, 
-.btn-main[disabled].active, 
-fieldset[disabled] .btn-main.active { 
-  background-color: #0D0D0D; 
-  border-color: #FFFFFF; 
-} 
- 
-.btn-main .badge { 
-  color: #0D0D0D; 
-  background-color: #ffffff; 
-}
-</style>
