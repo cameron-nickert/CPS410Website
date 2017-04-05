@@ -1,274 +1,170 @@
 <html>
 <head>
-  <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Calendar css -->
+    <link rel='stylesheet' href='https://fullcalendar.io/js/fullcalendar-3.3.1/fullcalendar.min.css' />
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- moment library (needed for date handling) -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js'></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Latest compiled Bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Calendar javascript -->
+    <script src='https://fullcalendar.io/js/fullcalendar-3.3.1/fullcalendar.min.js'></script>
 
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+
+    <style>
+        h1.title {
+            font-size: 50px;
+            font-family: 'Passion One', cursive;
+            font-weight: 400;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+
+            //modal defaults
+            $("#infoModal").attr("data-backdrop", "static");
+            $("#infoModal").attr("data-keyboard", false);
+            $("#infoModal").attr("data-show", false);
+
+            $("#infoModal").modal();
+
+            var highlightColor = 'rgb(92, 184, 92)';
+            var transparentColor = 'rgba(0, 0, 0, 0)';
+
+            //modal close function
+            $("#closeInfoModal").click(function () {
+                $("#infoModal").modal("toggle");
+                $(".fc-day").each(function () {
+                    if ($(this).css('background-color') == highlightColor) {
+                        $(this).css('background-color', transparentColor);
+                    }
+
+                }
+
+                );
+
+            });
+
+
+            var dayClicked = null;
+        // page is now ready, initialize the calendar...
+        $('#calendar').fullCalendar({
+            //click event funtion
+            dayClick: function (date, jsEvent, view) {
+                //var today = new Date();
+                //if (date.getTime() < today.getTime()) {
+                  //  $(this).css('background-color', 'red');
+                //}
+
+                dayClicked = date.format();
+                //alert('Clicked on: ' + date.format());
+
+                //alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+
+                //alert('Current view: ' + view.name);
+
+                //if the day is not in the past then open up the model
+                if(date.isAfter(moment().subtract(1,'days') )  ) {
+                    $("#infoModal").modal("toggle");
+                    if ($(this).css('background-color') == transparentColor) {
+                        $(this).css('background-color', highlightColor);
+                    }
+                    $("#dateLabel").text("Rooms Availible On " + dayClicked);
+                } else {
+
+                }
+
+
+            }
+
+        });
+
+        //book rooms (use url to send the date and time to the bookingInfo.html)
+        var getRoomUrl = function (roomNumber) {
+            return "bookingInfo.html#Date=" + dayClicked + "&Room="+roomNumber;
+        }
+
+        $("#room1").click(function () {
+            window.location.href = getRoomUrl(1);
+        });
+        $("#room2").click(function () {
+            window.location.href = getRoomUrl(2);
+        });
+        $("#room3").click(function () {
+            window.location.href = getRoomUrl(3);
+        });
+
+    });
+
+
+
+
+    </script>
+
+
+
+
+
 </head>
-
 <body>
 
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="login.html" style="color:dark-gray">Hotel Bookings</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rooms.html">View Rooms</a></li>
+                <li class="active"><a href="#">Book Room</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
 
 
-<div class="header" style="height:80%">
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="login.html" style="color:dark-gray">Hotel Bookings</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="rooms.html" >View Rooms</a></li>
-      <li class="active"><a href="#" >Book Room</a></li>
-      <li><a href="contact.html">Contact Us</a></li>
-    </ul>
-  </div>
-</nav>
-
-
-<br>
-
-<div>
-
-
-<div class="month"> 
-  <ul>
-    <li class="prev"> &#10094; </li>
-    <li class="next"> &#10095; </li>
-    <li>
-      August<br>
-      <span style="font-size:18px">2016</span>
-    </li>
-  </ul>
-</div>
-
-<ul class="weekdays">
-  <li>Mo</li>
-  <li>Tu</li>
-  <li>We</li>
-  <li>Th</li>
-  <li>Fr</li>
-  <li>Sa</li>
-  <li>Su</li>
-</ul>
-
-<ul class="days"> 
-<a href="#" data-toggle="modal" data-target="#info"><li>1</li></a>
-<a href="#" data-toggle="modal" data-target="#info"><li>2</li></a>
-<a href="#" data-toggle="modal" data-target="#info"><li>3</li></a>
-<a href="#" data-toggle="modal" data-target="#info"><li>4</li></a>
-<a href="#" data-toggle="modal" data-target="#info"><li>5</li></a>
-<a href="#" data-toggle="modal" data-target="#info"><li>6</li></a>
-<a href="#" data-toggle="modal" data-target="#info"><li>7</li></a>
-<a href="#" data-toggle="modal" data-target="#info"><li>8</li></a>
-<a href="#" data-toggle="modal" data-target="#info"><li>9</li></a>
-<a href="#" data-toggle="modal" data-target="#info"><li>10</li></a>
-<a href="#" data-toggle="modal" data-target="#info"><li>11</li></a>
-<a href="#" data-toggle="modal" data-target="#info"><li>12</li></a>
-<li><span class="active">13</span></li>
-<a href="#" data-toggle="modal" data-target="#info"><li>14</li></a>
-<a href="#" data-toggle="modal" data-target="#info"><li>15</li></a>
-<a href="#" data-toggle="modal" data-target="#info"><li>16</li></a>
-<a href="#" data-toggle="modal" data-target="#info"><li>17</li></a>
-<a href="#" data-toggle="modal" data-target="#info"><li>18</li></a>
-<a href="#" data-toggle="modal" data-target="#info"><li>19</li></a>
-<a href="#" data-toggle="modal" data-target="#info"><li>20</li></a>
-<a href="#" data-toggle="modal" data-target="#info"><li>21</li></a>
-<a href="#" data-toggle="modal" data-target="#info"><li>22</li></a>
-<a href="#" data-toggle="modal" data-target="#info"><li>23</li></a>
-<a href="#" data-toggle="modal" data-target="#info"><li>24</li></a>
-<a href="#" data-toggle="modal" data-target="#info"><li>25</li></a>
-<a href="#" data-toggle="modal" data-target="#info"><li>26</li></a>
-<a href="#" data-toggle="modal" data-target="#info"><li>27</li></a>
-</ul>
-
-    <div id="info" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Available Rooms</h4>
-      </div>
-      <div class="modal-body">
-          <button type="button" style="float:right" class="btn btn-success" data-dismiss="modal" onclick="window.location='bookinginfo.html'"> Select Room &check;</button>
-            <p><b>Penthouse Suite</b></p>
-            <p>Our most luxurious room available.</p>
-
-          <br>
-          <button type="button" style="float:right" class="btn btn-success" data-dismiss="modal"> Select Room &check;</button>
-          <p><b>Prestige Room</b></p>
-            <p>Fine living and fun times.</p>
-
-          <br>
-
-          <button type="button" style="float:right" class="btn btn-success" data-dismiss="modal"> Select Room &check;</button>
-          <p><b>Classic Room With a View</b></p>
-            <p>Affordable with a spin of luxury.</p>
-
-          
-          <br>
-          <a href="rooms.html"  style="color:#ff4927; font-size:13px">What are these?</a>
-
-      </div>
-    
+    <div class="container panel-title text-center">
+        <h1 class="title">Book Room</h1>
+        <div class="well" id='calendar'></div>
     </div>
 
-  </div>
-</div>
-    
-<div class="col-md-6 text-center"> 
-    <div class="panel panel-default">
-    <div class="panel-body">A Basic Panel</div>
+    <!-- Room modal info-->
+    <div id="infoModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button id="closeInfoModal" type="button" class="close">&times;</button>
+                    <h4 id="dateLabel" class="modal-title">Available Rooms</h4>
+                </div>
+                <div class="modal-body">
+                    <button id ="room1" type="button" style="float:right" class="btn btn-success" > Select Room &check;</button>
+                    <p><b>Penthouse Suite</b></p>
+                    <p>Our most luxurious room available.</p>
+                    <br>
+                    <button id="room2" type="button" style="float:right" class="btn btn-success"> Select Room &check;</button>
+                    <p><b>Prestige Room</b></p>
+                    <p>Fine living and fun times.</p>
+                    <br>
+                    <button id="room3" type="button" style="float:right" class="btn btn-success" > Select Room &check;</button>
+                    <p><b>Classic Room With a View</b></p>
+                    <p>Affordable with a spin of luxury.</p>
+
+                    <br>
+                    <a href="rooms.html" style="color:#ff4927; font-size:13px">What are these?</a>
+                </div>
+
+            </div>
+        </div>
     </div>
-</div>
-</div>
+
+
 </body>
-
 </html>
-<style type="text/css">
-body {
-   
-}
-.panel {
-    border: 0;
-}
-.table > thead > tr > th, .table > thead > tr > td {
-    border: 0;
-}
-
-
-.btn-main { 
-  color: #ffffff; 
-  background-color: rgba(0, 0, 0, 0.2);; 
-  border-color: #FFFFFF; 
-} 
- 
-.btn-main:hover, 
-.btn-main:focus, 
-.btn-main:active, 
-.btn-main.active, 
-.open .dropdown-toggle.btn-main { 
-  color: #ffffff; 
-  background-color: rgba(0, 0, 0, 0.5);; 
-  border-color: #FFFFFF; 
-} 
- 
-.btn-main:active, 
-.btn-main.active, 
-.open .dropdown-toggle.btn-main { 
-  background-image: none; 
-} 
- 
-.btn-main.disabled, 
-.btn-main[disabled], 
-fieldset[disabled] .btn-main, 
-.btn-main.disabled:hover, 
-.btn-main[disabled]:hover, 
-fieldset[disabled] .btn-main:hover, 
-.btn-main.disabled:focus, 
-.btn-main[disabled]:focus, 
-fieldset[disabled] .btn-main:focus, 
-.btn-main.disabled:active, 
-.btn-main[disabled]:active, 
-fieldset[disabled] .btn-main:active, 
-.btn-main.disabled.active, 
-.btn-main[disabled].active, 
-fieldset[disabled] .btn-main.active { 
-  background-color: #0D0D0D; 
-  border-color: #FFFFFF; 
-} 
- 
-.btn-main .badge { 
-  color: #0D0D0D; 
-  background-color: #ffffff; 
-}
-
-ul {list-style-type: none;}
-body {font-family: Verdana, sans-serif;}
-
-/* Month header */
-.month {
-    padding: 20px 25px;
-    width: 100%;
-    background: #1abc9c;
-}
-
-/* Month list */
-.month ul {
-    margin: 0;
-    padding: 0;
-}
-
-.month ul li {
-    color: white;
-    font-size: 20px;
-    
-    text-transform: uppercase;
-    letter-spacing: 3px;
-}
-
-/* Previous button inside month header */
-.month .prev {
-    float: left;
-    padding-top: 10px;
-}
-
-/* Next button */
-.month .next {
-    float: right;
-    padding-top: 10px;
-}
-
-/* Weekdays (Mon-Sun) */
-.weekdays {
-    margin: 0;
-    padding: 10px 0;
-    background-color:#ddd;
-}
-
-.weekdays li {
-    display: inline-block;
-    width: 13.6%;
-    color: #666;
-    text-align: center;
-}
-
-/* Days (1-31) */
-.days {
-    padding: 10px 0;
-    background: #eee;
-    margin: 0;
-}
-
-.days li {
-      padding: 15px;
-
-    list-style-type: none;
-    display: inline-block;
-    width: 13.6%;
-    text-align: center;
-    margin-bottom: 5px;
-    font-size:12px;
-    color:#777;
-}
-
-/* Highlight the "hovered" day */
-.days li:hover {
-    padding: 15px;
-    background: #1abc9c;
-    color: white !important
-}
-
-/* Highlight the "current" day */
-.days li .active {
-    padding: 15px;
-    background: #1abc9c;
-    color: white !important
-}
-</style>
