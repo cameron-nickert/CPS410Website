@@ -257,25 +257,34 @@ function loadTable(){
 		// Insert a cell in the row at index 0
 		var nameRow  = newRow.insertCell(0);
 		var emailRow  = newRow.insertCell(1);
-        var emptyRow  = newRow.insertCell(2);
+        var roomRow  = newRow.insertCell(2);
 		var phoneRow  = newRow.insertCell(3);
 		var dateRow  = newRow.insertCell(4);
 
         var name = data.val()["username"];
         var phone = data.val()["phone"];
         var email = data.val()["email"];
-
+        var date = data.val()["date"];
+        if(date == null){
+            date = "-"
+        }
+        var room = data.val()["room"];
+        if(room == null){
+            room = "-"
+        }
 		//Create the text for the cells
 		var nameText  = document.createTextNode(name);
         var phoneText  = document.createTextNode(phone);
 		var emailText  = document.createTextNode(email);
-		var dateText = document.createTextNode("8-12-17");
+		var dateText = document.createTextNode(date);
+		var roomText = document.createTextNode(room);
 
 		//Append the text to the cells
 		nameRow.appendChild(nameText);
 		phoneRow.appendChild(phoneText);
 		emailRow.appendChild(emailText);
         dateRow.appendChild(dateText);
+        roomRow.appendChild(roomText);
 
 	});
 }

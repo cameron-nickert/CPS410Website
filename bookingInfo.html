@@ -124,6 +124,8 @@
         </body>
 
 <script>
+    var d;
+    var roomNumber = null; //this variable will store the room number in a string
 
     function checkFields(){
         var database = firebase.database();
@@ -139,13 +141,14 @@
             firebase.database().ref('bookings/' + phone).set({
                 username: name,
                 email: email,
-                phone : phone
+                phone : phone,
+                date : date.format('MM-DD-YY'),
+                room : roomNumber
             });
         }
     }
 
 
-    var roomNumber = null; //this variable will store the room number in a string
     var date = null; //this variable will store a moment date object (use the date.format() method to format the date)
 
     $(document).ready(function () {
@@ -167,7 +170,7 @@
         date = moment(datestring);
 
         if (date.isAfter(moment().subtract(1, 'days'))) {
-
+            d = date;
         } else { //if the date is before today, its invalid
             date = moment(null);
         }
