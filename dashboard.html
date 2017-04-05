@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head> 
+    <meta charset="utf-8"> 
+    <title>Guarded</title>
+  	<!--Load the AJAX API FOR CHARTS-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    
+   <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+            apiKey: "AIzaSyBA_ruii8zof63fNxDEMJRwAPQh8xEqC7o",
+            authDomain: "cpswebsite-42610.firebaseapp.com",
+            databaseURL: "https://cpswebsite-42610.firebaseio.com",
+            storageBucket: "cpswebsite-42610.appspot.com",
+            messagingSenderId: "249799148895"
+          };
+	  firebase.initializeApp(config);
+
+    function signOut(){
+    	firebase.auth().signOut().then(function() {
+			window.location="index.html";
+		}, function(error) {
+				  // An error happened.
+		});			
+    }
+    </script>
+    <!--Set the favicon for the website-->
+    <link rel="icon" type="image/png" href="img/favicon-32x32.png">
+	<link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+	 <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+
+<body onload="loadTable()" style="background-color:#4A81C3">
+			<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+		<div id="mySidenav" class="sidenav">
+<!--
+			<div align="center" style="padding-bottom:20px">
+				<img align="center" style="padding-left:0px; " src="img/cmu.png" width="70%" height="12%">
+			</div>
+
+		  <a href="#" onclick="showAllMarkers();"><span class="glyphicon glyphicon-map-marker"></span> All Markers</a>
+		  <a href="#" onclick="showUpDownMarkers();"><span class="glyphicon glyphicon-map-marker"></span> Up/Down Markers</a>
+
+		  <a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-time"></span> Set Range</a>
+		  <a href="#" onclick="hideMarkers()" ><span class="glyphicon glyphicon-road"></span> Toggle Safe Rides</a>
+
+		  <a href="#"  onclick="downloadCSV()"><span class="glyphicon glyphicon-cloud-download"></span> Export Data</a>
+-->
+
+		  <br><br><br><br><br><br><br><br><br><br><br><br><br>
+		  
+		  <a href="help.html"  onclick=""><span class=" glyphicon glyphicon-question-sign"></span> Need Help?</a>
+		  <a href="help.html"  onclick=""><span class=" glyphicon glyphicon-warning-sign"></span> Report an issue</a>
+
+
+		</div>
+	<nav class="navbar navbar-default" style="box-shadow: 0px 3px 5px #888888;">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="">Booking Dashboard</a>
+	    </div>
+
+
+	  </div>
+
+	</nav>
+	<div>
+
+
+<div class="container" style=" margin-left: 170px; width:85%">
+  <h2 style="color:white">Current Bookings</h2>
+  <p style="color:white">Information for recent hotel bookings.</p>            
+  <table id="tble" class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Room</th>
+        <th>Phone</th>
+        <th>Date</th>
+
+      </tr>
+    </thead>
+    <tbody>
+ 
+    </tbody>
+  </table>
+</div>
+	</div>	
+
+
+</body>
+</html>
+
+
+<style>
+	#map { height: 660px; width: 100%;}
+
+	
+	input { border-width:2px; padding:13px; font-size:17px; text-align:center; border-style:solid; color:#ffffff; background-color:#61daff; margin-bottom: 20px; border-color:#61daff; border-radius:8px; text-shadow:0px 0px 0px rgba(42,42,42,.64); font-weight:bold;  } 
+			 input:focus { outline:none; 
+	} 
+
+
+	th{
+		background-color: #fff;
+	}
+
+	td{
+		background-color: white;
+	}
+
+	.body{
+		vertical-align: center;
+	}
+
+	.myButton {
+		-moz-box-shadow: 0px 1px 0px 0px #f0f7fa;
+		-webkit-box-shadow: 0px 1px 0px 0px #f0f7fa;
+		box-shadow: 0px 1px 0px 0px #f0f7fa;
+		background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #33bdef), color-stop(1, #019ad2));
+		background:-moz-linear-gradient(top, #33bdef 5%, #019ad2 100%);
+		background:-webkit-linear-gradient(top, #33bdef 5%, #019ad2 100%);
+		background:-o-linear-gradient(top, #33bdef 5%, #019ad2 100%);
+		background:-ms-linear-gradient(top, #33bdef 5%, #019ad2 100%);
+		background:linear-gradient(to bottom, #33bdef 5%, #019ad2 100%);
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#33bdef', endColorstr='#019ad2',GradientType=0);
+		background-color:#33bdef;
+		-moz-border-radius:6px;
+		-webkit-border-radius:6px;
+		border-radius:6px;
+		border:1px solid #057fd0;
+		display:inline-block;
+		cursor:pointer;
+		color:#ffffff;
+		font-family:Arial;
+		font-size:18px;
+		font-weight:bold;
+		padding:11px 25px;
+		text-decoration:none;
+		text-shadow:0px -1px 0px #5b6178;
+	}
+	.myButton:hover {
+		background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #019ad2), color-stop(1, #33bdef));
+		background:-moz-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+		background:-webkit-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+		background:-o-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+		background:-ms-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+		background:linear-gradient(to bottom, #019ad2 5%, #33bdef 100%);
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#019ad2', endColorstr='#33bdef',GradientType=0);
+		background-color:#019ad2;
+	}
+	.myButton:active {
+
+		position:relative;
+		top:1px;
+	}
+
+	caption { 
+	    display: table-caption;
+	    text-align: center;
+	}
+	/* The side navigation menu */
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 170px; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    top: 0;
+    left: 0;
+    /*f8df9c 61002E
+    e5e5e5*/
+    background-color: #fff; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+    padding: 8px 8px 8px 16px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #61002E;
+    display: block;
+    transition: 0.3s
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover, .offcanvas a:focus{
+    color: #fff;
+    background-color: #61002E;
+}
+
+/* Position and style the close button (top right corner) */
+.closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px !important;
+    margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    margin-left: 170px;
+    padding-bottom:20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
+</style>
+
+
+<script>
+
+var config = {
+            apiKey: "AIzaSyBA_ruii8zof63fNxDEMJRwAPQh8xEqC7o",
+            authDomain: "cpswebsite-42610.firebaseapp.com",
+            databaseURL: "https://cpswebsite-42610.firebaseio.com",
+            storageBucket: "cpswebsite-42610.appspot.com",
+            messagingSenderId: "249799148895"
+          };
+    
+firebase.initializeApp(config);
+
+
+function loadTable(){
+		var database = firebase.database();
+        console.log("Test");  
+
+		var userRef = firebase.database().ref('/bookings/');
+          
+        userRef.on('child_added', function(data) {
+        console.log("Test");  
+		var tble = document.getElementById('tble');
+
+		// Insert a row in the table at the last row
+		var newRow  = tble.insertRow(tble.rows.length);
+
+		// Insert a cell in the row at index 0
+		var nameRow  = newRow.insertCell(0);
+		var emailRow  = newRow.insertCell(1);
+        var emptyRow  = newRow.insertCell(2);
+		var phoneRow  = newRow.insertCell(3);
+		var dateRow  = newRow.insertCell(4);
+
+        var name = data.val()["username"];
+        var phone = data.val()["phone"];
+        var email = data.val()["email"];
+
+		//Create the text for the cells
+		var nameText  = document.createTextNode(name);
+        var phoneText  = document.createTextNode(phone);
+		var emailText  = document.createTextNode(email);
+		var dateText = document.createTextNode("8-12-17");
+
+		//Append the text to the cells
+		nameRow.appendChild(nameText);
+		phoneRow.appendChild(phoneText);
+		emailRow.appendChild(emailText);
+        dateRow.appendChild(dateText);
+
+	});
+}
+</script>
+ 
+
+
+
+
+

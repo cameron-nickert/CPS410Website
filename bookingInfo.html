@@ -25,6 +25,19 @@
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         
+        <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
+        <script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyBA_ruii8zof63fNxDEMJRwAPQh8xEqC7o",
+            authDomain: "cpswebsite-42610.firebaseapp.com",
+            databaseURL: "https://cpswebsite-42610.firebaseio.com",
+            storageBucket: "cpswebsite-42610.appspot.com",
+            messagingSenderId: "249799148895"
+          };
+          firebase.initializeApp(config);
+        </script>
+        
 		<title>Admin</title>
         
 	</head>
@@ -48,7 +61,7 @@
 				<div class="panel-heading">
 	               <div class="panel-title text-center">
 	               		<h1 class="title">Just a little more info...</h1>
-                        <h2 style="font-size:20px">Booking for February 4th, 2017</h2>
+                        <h2 style="font-size:20px">Booking for August 12th, 2017</h2>
 	               		<hr>
                        
 	               	</div>
@@ -64,7 +77,7 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your username"/>
+									<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your name"/>
 								</div>
 							</div>
 						</div>
@@ -74,7 +87,7 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="email" id="email"  placeholder="Enter your password"/>
+									<input type="text" class="form-control" name="email" id="email"  placeholder="Enter your email"/>
 								</div>
 							</div>
 						</div>
@@ -84,7 +97,7 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-phone fa" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="email" id="email"  placeholder="Enter your password"/>
+									<input type="text" class="form-control" name="phone" id="phone"  placeholder="Enter your phone #"/>
 								</div>
 							</div>
 						</div>
@@ -93,7 +106,7 @@
                         
                
 						<div class="form-group ">
-							<button type="button" class="btn btn-primary btn-lg btn-block login-button">Create Reservation</button>
+							<button type="button" class="btn btn-primary btn-lg btn-block login-button" onclick="checkFields()">Create Reservation</button>
 						</div>
 <!--
 						<div class="login-register">
@@ -105,3 +118,27 @@
 			</div>
 		</div>
         </body>
+    
+<script>
+
+    function checkFields(){
+        var database = firebase.database();
+
+        if(document.getElementById("email").value == '' || document.getElementById("phone").value == '' || document.getElementById("name").value == ''){
+                 
+        }else{
+            
+            var email = document.getElementById("email").value;
+            var phone = document.getElementById("phone").value;
+            var name = document.getElementById("name").value;
+
+            firebase.database().ref('bookings/' + phone).set({
+                username: name,
+                email: email,
+                phone : phone
+            });
+        }
+    }
+    
+
+</script>
