@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head> 
+    <head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
 
@@ -9,7 +9,7 @@
 
 		<!-- Website Font style -->
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-		
+
 		<!-- Google Fonts -->
 		<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
@@ -19,12 +19,15 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+        <!-- moment library (needed for date handling) -->
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js'></script>
+
         <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        
+
         <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
         <script>
           // Initialize Firebase
@@ -37,9 +40,10 @@
           };
           firebase.initializeApp(config);
         </script>
-        
-		<title>Admin</title>
-        
+
+
+
+
 	</head>
         <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -55,23 +59,23 @@
   </div>
 </nav>
     <body >
-        
+
 <div class="container">
 			<div class="row main">
 				<div class="panel-heading">
 	               <div class="panel-title text-center">
 	               		<h1 class="title">Just a little more info...</h1>
-                        <h2 style="font-size:20px">Booking for August 12th, 2017</h2>
+                        <h2 id="bookInfoLabel" style="font-size:20px">Booking Room null For Date null</h2>
 	               		<hr>
-                       
+
 	               	</div>
-                    
-	            </div> 
-                
+
+	            </div>
+
 				<div class="main-login main-center">
 
 					<form class="form-horizontal" method="post" action="#">
-						
+
 						<div class="form-group">
 							<label for="name" class="cols-sm-2 control-label">Name</label>
 							<div class="cols-sm-10">
@@ -91,7 +95,7 @@
 								</div>
 							</div>
 						</div>
-                        
+
                         <div class="form-group">
 							<label for="email" class="cols-sm-2 control-label">Contact Phone</label>
 							<div class="cols-sm-10">
@@ -101,10 +105,10 @@
 								</div>
 							</div>
 						</div>
-                        
-            
-                        
-               
+
+
+
+
 						<div class="form-group ">
 							<button type="button" class="btn btn-primary btn-lg btn-block login-button" onclick="checkFields()">Create Reservation</button>
 						</div>
@@ -118,16 +122,16 @@
 			</div>
 		</div>
         </body>
-    
+
 <script>
 
     function checkFields(){
         var database = firebase.database();
 
         if(document.getElementById("email").value == '' || document.getElementById("phone").value == '' || document.getElementById("name").value == ''){
-                 
+
         }else{
-            
+
             var email = document.getElementById("email").value;
             var phone = document.getElementById("phone").value;
             var name = document.getElementById("name").value;
@@ -139,6 +143,53 @@
             });
         }
     }
-    
+
+
+    var roomNumber = null; //this variable will store the room number in a string
+    var date = null; //this variable will store a moment date object (use the date.format() method to format the date)
+
+    $(document).ready(function () {
+        var path = window.location.href;
+
+        //find date
+        var index = -1;
+        if (path.indexOf("Date=") == -1) {
+            if (path.indexOf("date=") == -1) {
+                index = path.indexOf("date=");
+            } else {
+                return;
+            }
+        } else {
+            index = path.indexOf("Date=");
+        }
+        index = index + 5; //to remove the word date
+        var datestring = path.substr(index, 10); //length is 10
+        date = moment(datestring);
+
+        if (date.isAfter(moment().subtract(1, 'days'))) {
+
+        } else { //if the date is before today, its invalid
+            date = moment(null);
+        }
+
+        //find room number
+        index = -1;
+        if (path.indexOf("Room=") == -1) {
+            if (path.indexOf("room=") == -1) {
+                index = path.indexOf("room=");
+            } else {
+                return;
+            }
+        } else {
+            index = path.indexOf("Room=");
+        }
+        index = index + 5; //to remove the word room
+        roomNumber = path.substr(index, 1); //length is 1
+
+        $("#bookInfoLabel").text("Booking Room #" + roomNumber + " For " + date.format('MMMM Do YYYY'));
+
+
+    });
+
 
 </script>
