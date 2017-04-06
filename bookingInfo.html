@@ -1,35 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
 
-		<!-- Website CSS style -->
+    <!-- Website CSS style -->
+    <!-- Website Font style -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
 
-		<!-- Website Font style -->
-	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="login.css">
 
-		<!-- Google Fonts -->
-		<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
-		<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-        <link rel="stylesheet" type="text/css" href="login.css">
+    <!-- moment library (needed for date handling) -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js'></script>
 
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-        <!-- moment library (needed for date handling) -->
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js'></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-        <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-        <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
-        <script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
+    <script>
           // Initialize Firebase
           var config = {
             apiKey: "AIzaSyBA_ruii8zof63fNxDEMJRwAPQh8xEqC7o",
@@ -39,105 +37,102 @@
             messagingSenderId: "249799148895"
           };
           firebase.initializeApp(config);
-        </script>
+    </script>
 
 
 
 
-	</head>
-        <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#" style="color:dark-gray">Hotel Bookings</a>
+</head>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" style="color:dark-gray">Hotel Bookings</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="rooms.html">View Rooms</a></li>
+            <li><a href="booking.html">Book Room</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
     </div>
-    <ul class="nav navbar-nav">
-      <li ><a href="index.html">Home</a></li>
-      <li><a href="rooms.html" >View Rooms</a></li>
-      <li><a href="booking.html" >Book Room</a></li>
-      <li><a href="contact.html">Contact Us</a></li>
-    </ul>
-  </div>
 </nav>
-    <body >
+<body>
 
-<div class="container">
-			<div class="row main">
-				<div class="panel-heading">
-	               <div class="panel-title text-center">
-	               		<h1 class="title">Just a little more info...</h1>
-                        <h2 id="bookInfoLabel" style="font-size:20px">Booking Room null For Date null</h2>
-	               		<hr>
+    <div class="container">
+        <div class="row main">
+            <div class="panel-heading">
+                <div class="panel-title text-center">
+                    <h1 class="title">Booking Room</h1>
+                    <h2 id="bookInfoLabel" style="font-size:20px">Booking Room null For Date null</h2>
+                    <h1 style="font-size:18px">Please fill out the information below</h1>
+                    <hr>
 
-	               	</div>
+                </div>
 
-	            </div>
+            </div>
 
-				<div class="main-login main-center">
+            <div class="main-login main-center">
+                <form class="form-horizontal" method="post" action="#">
 
-					<form class="form-horizontal" method="post" action="#">
+                    <div class="form-group">
 
-						<div class="form-group">
-							<label for="name" class="cols-sm-2 control-label">Name</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your name"/>
-								</div>
-							</div>
-						</div>
+                        <label for="name" class="cols-sm-2 control-label">Name</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Enter your name" />
+                            </div>
+                        </div>
+                    </div>
 
-						<div class="form-group">
-							<label for="email" class="cols-sm-2 control-label">Contact Email</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="email" id="email"  placeholder="Enter your email"/>
-								</div>
-							</div>
-						</div>
+                    <div class="form-group">
+                        <label for="email" class="cols-sm-2 control-label">Contact Email</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="email" id="email" placeholder="Enter your email" />
+                            </div>
+                        </div>
+                    </div>
 
-                        <div class="form-group">
-							<label for="email" class="cols-sm-2 control-label">Contact Phone</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-phone fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="phone" id="phone"  placeholder="Enter your phone #"/>
-								</div>
-							</div>
-						</div>
-
-
+                    <div class="form-group">
+                        <label for="email" class="cols-sm-2 control-label">Contact Phone</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-phone fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Enter your phone #" />
+                            </div>
+                        </div>
+                    </div>
 
 
-						<div class="form-group ">
-							<button type="button" class="btn btn-primary btn-lg btn-block login-button" onclick="checkFields()">Create Reservation</button>
-						</div>
-<!--
-						<div class="login-register">
-				            <a href="index.php">Login</a>
-				         </div>
--->
-					</form>
-				</div>
-			</div>
-		</div>
-        </body>
+
+
+                    <div class="form-group ">
+                        <button type="button" class="btn btn-primary btn-lg btn-block login-button" onclick="checkFields()">Create Reservation</button>
+                    </div>
+                    <!--
+                                            <div class="login-register">
+                                                <a href="index.php">Login</a>
+                                             </div>
+                    -->
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
 
 <script>
     var d;
+    var d2;
     var roomNumber = null; //this variable will store the room number in a string
-
     function checkFields(){
         var database = firebase.database();
-
         if(document.getElementById("email").value == '' || document.getElementById("phone").value == '' || document.getElementById("name").value == ''){
-
         }else{
-
             var email = document.getElementById("email").value;
             var phone = document.getElementById("phone").value;
             var name = document.getElementById("name").value;
-
             firebase.database().ref('bookings/' + phone).set({
                 username: name,
                 email: email,
@@ -147,52 +142,31 @@
             });
         }
     }
-
-
     var date = null; //this variable will store a moment date object (use the date.format() method to format the date)
-
+    var date2 = null;
     $(document).ready(function () {
         var path = window.location.href;
-
         //find date
-        var index = -1;
-        if (path.indexOf("Date=") == -1) {
-            if (path.indexOf("date=") == -1) {
-                index = path.indexOf("date=");
-            } else {
-                return;
-            }
-        } else {
-            index = path.indexOf("Date=");
-        }
-        index = index + 5; //to remove the word date
+        var index = path.indexOf("in=") + 3;//to remove the word in
+
         var datestring = path.substr(index, 10); //length is 10
         date = moment(datestring);
 
-        if (date.isAfter(moment().subtract(1, 'days'))) {
+        index = path.indexOf("out=") + 4;//to remove the word out
+        datestring = path.substr(index, 10); //length is 10
+        date2 = moment(datestring);
+
+        if (date.isAfter(moment().subtract(1, 'days')) || date2.isAfter(date) ) {
+            //valid
             d = date;
+            d2 = date2;
         } else { //if the date is before today, its invalid
             date = moment(null);
+            date2 = moment(null);
         }
-
         //find room number
-        index = -1;
-        if (path.indexOf("Room=") == -1) {
-            if (path.indexOf("room=") == -1) {
-                index = path.indexOf("room=");
-            } else {
-                return;
-            }
-        } else {
-            index = path.indexOf("Room=");
-        }
-        index = index + 5; //to remove the word room
+        index = path.indexOf("room=") + 5; //to remove the word room
         roomNumber = path.substr(index, 1); //length is 1
-
-        $("#bookInfoLabel").text("Booking Room #" + roomNumber + " For " + date.format('MMMM Do YYYY'));
-
-
+        $("#bookInfoLabel").text("Booking Room #" + roomNumber + " for " + date.format('MMMM Do YYYY') + " through " + date2.format('MMMM Do YYYY'));
     });
-
-
 </script>
