@@ -24,9 +24,50 @@
             font-family: 'Passion One', cursive;
             font-weight: 400;
         }
+
+
+
+
     </style>
 
     <script>
+        var startDate = null;
+        var endDate = null;
+
+        var clearDates = function () {
+            //clear dates if clicked third time
+            startDate = null;
+            endDate = null;
+            $('#calendar').fullCalendar('unselect');
+
+
+        };
+
+        var updateDates = function () {
+            var isNull = false;
+
+            if (startDate != null) {
+                $("#date1").text("Check-In: " + startDate.format('MMMM Do YYYY'));
+            } else {
+                isNull = true;
+                $("#date1").text("Check-In: ???");
+            }
+            
+            if (endDate != null) {
+                $("#date2").text("Check-Out: " + endDate.format('MMMM Do YYYY'));
+            } else {
+                isNull = true;
+                $("#date2").text("Check-Out: ???");
+            }
+
+            var btn = $("#openInfoModal");
+            if (isNull) {
+                    btn.addClass("disabled");
+            } else {
+                    btn.removeClass("disabled");
+            }
+        }
+
         $(document).ready(function () {
 
             //modal defaults
@@ -36,29 +77,35 @@
 
             $("#infoModal").modal();
 
-            var highlightColor = 'rgb(92, 184, 92)';
-            var transparentColor = 'rgba(0, 0, 0, 0)';
 
             //modal close function
             $("#closeInfoModal").click(function () {
                 $("#infoModal").modal("toggle");
-                $(".fc-day").each(function () {
-                    if ($(this).css('background-color') == highlightColor) {
-                        $(this).css('background-color', transparentColor);
-                    }
-
-                }
-
-                );
-
             });
 
+            $("#clearDates").click(function () {
+                clearDates();
+                updateDates();
+            });
+
+            $("#openInfoModal").click(function () {
+                openInfo();
+            });
+
+            var openInfo = function () {
+                $("#dateLabel").text("Rooms Available From " + startDate.format('MMMM Do YYYY') + " to " + endDate.format('MMMM Do YYYY'));
+                $("#infoModal").modal("toggle");
+            };
 
             var dayClicked = null;
         // page is now ready, initialize the calendar...
         $('#calendar').fullCalendar({
             //click event funtion
+            selectable: true,
+            selectHelper: true,
+
             dayClick: function (date, jsEvent, view) {
+
                 //var today = new Date();
                 //if (date.getTime() < today.getTime()) {
                   //  $(this).css('background-color', 'red');
@@ -73,25 +120,51 @@
 
                 //if the day is not in the past then open up the model
                 if(date.isAfter(moment().subtract(1,'days') )  ) {
-                    $("#infoModal").modal("toggle");
-                    if ($(this).css('background-color') == transparentColor) {
-                        $(this).css('background-color', highlightColor);
-                    }
-                    $("#dateLabel").text("Rooms Availible On " + date.format('MMMM Do YYYY'));
-                } else {
+                    //if we don't have a start date
+                    if (startDate == null) {
+                        startDate = date;
+                        endDate = null;
 
+                    } else {
+                        //if we have start but no end date
+                        if (endDate == null) {
+                            endDate = date;
+
+                            //if you made the end date smaller, switch them
+                            if (startDate.isAfter(endDate)) {
+                                var tempDate = startDate;
+                                startDate = endDate;
+                                endDate = tempDate;
+                            }
+
+                           
+                            if (startDate.format() != endDate.format()) {
+                                openInfo();
+                            } else {
+                                endDate = null;
+                            }
+                        } else {
+                            startDate = date;
+                            endDate = null;
+
+                        }
+                    }
+
+                } else {
+                    clearDates();
                 }
 
+                updateDates();
 
-            }
+            } //click function
 
         });
 
         //book rooms (use url to send the date and time to the bookingInfo.html)
         var getRoomUrl = function (roomNumber) {
-            return "bookingInfo.html#Date=" + dayClicked + "&Room="+roomNumber;
+            return "bookingInfo.html#in=" + startDate.format() + "&out=" + endDate.format() + "&room=" + roomNumber;
         }
-
+            
         $("#room1").click(function () {
             window.location.href = getRoomUrl(1);
         });
@@ -106,7 +179,7 @@
 
 
 
-
+    
     </script>
 
 
@@ -131,11 +204,23 @@
     </nav>
 
 
-    <div class="container panel-title text-center">
+    <div class="container panel-title">
         <h1 class="title">Book Room</h1>
-        <div class="well" id='calendar'></div>
-    </div>
 
+
+        <div class="row">
+            <div class="col-sm-8" id='calendar'></div>
+            <div class="col-sm-4">
+                <div id="dates" class="row well">
+
+                    <h4 id="date1">Check-In: ???</h4>
+                    <h4 id="date2">Check-Out: ???</h4>
+                    <button id="clearDates" type="button" class="btn btn-default">Clear</button>
+                    <button id="openInfoModal" type="button" class="btn btn-primary disabled">View Availability</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Room modal info-->
     <div id="infoModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -168,3 +253,4 @@
 
 </body>
 </html>
+
